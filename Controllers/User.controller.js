@@ -32,6 +32,31 @@ userController.authUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid Email or Password");
   }
 });
+// Without Crypt Password
+userController.authUserWithourCrypt = asyncHandler(async (req, res) => {
+  const { username, password } = req.body;
+  console.log("%%%%%%%%%%%%%%%%%%%");
+  console.log(req.body);
+  console.log("%%%%%%%%%%%%%%%");
+  // users = await UserModel.find();
+  // console.log(users);
+  const user = await UserModel.findOne({ username });
+  console.log(user);
+
+  if (user && (await user.matchPassword(password)))  {
+    res.json({
+      _id: user._id,
+      username: user.username,
+     // token: generateToken(user._id),
+    });
+    
+  } else {
+    res.status(500).json({
+      error: new Error("Invalid Email or Password"),
+    });
+    throw new Error("Invalid Email or Password");
+  }
+});
 
 
 userController.getAllUsers = async function (req, res) {

@@ -15,7 +15,7 @@ routerUser.post('/login', userController.login);
 routerUser.route("/").post(userController.registerUser);
 routerUser.get('/users', verifyToken);*/
 
-routerUser.post("/login", userController.authUser);
-
+//routerUser.post("/login", userController.authUser);
+routerUser.post("/login", userController.authUserWithourCrypt);
 
 module.exports = routerUser;
