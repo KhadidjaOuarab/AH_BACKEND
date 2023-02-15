@@ -19,7 +19,8 @@ const userSchema = new Schema({
 
 
 });
-
+//¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ A activer dans le cas du mot passe crypter --------------
+/*
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
   };
@@ -32,7 +33,9 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
   });
-  
+  */ 
+ //¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ A activer dans le cas du mot passe crypter --------------
+ 
 // Schema are then compiled into models using the mongoose.model() method
 // once you have a model you can use it to find, create, update and delete objects
 //module.exports = mongoose.model("users", userSchema);

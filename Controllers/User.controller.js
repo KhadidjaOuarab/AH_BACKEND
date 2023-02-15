@@ -15,14 +15,16 @@ userController.authUser = asyncHandler(async (req, res) => {
   console.log("%%%%%%%%%%%%%%%");
   // users = await UserModel.find();
   // console.log(users);
-  const user = await UserModel.findOne({ username });
+  const user = await UserModel.findOne({ username ,password});
+ // const password = await UserModel.findOne({ password });
   console.log(user);
-
-  if (user && (await user.matchPassword(password)))  {
+  if (user )  {
+  //if (user && (await user.matchPassword(password)))  {
     res.json({
       _id: user._id,
       username: user.username,
-      token: generateToken(user._id),
+      password: user.password,
+     // token: generateToken(user._id),
     });
     
   } else {
@@ -33,7 +35,8 @@ userController.authUser = asyncHandler(async (req, res) => {
   }
 });
 // Without Crypt Password
-userController.authUserWithourCrypt = asyncHandler(async (req, res) => {
+userController.authUserWithCrypt = asyncHandler(async (req, res) => {
+  console.log("%%%%%%%%%%%%%%%%%%%");
   const { username, password } = req.body;
   console.log("%%%%%%%%%%%%%%%%%%%");
   console.log(req.body);
